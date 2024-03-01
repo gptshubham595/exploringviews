@@ -11,6 +11,8 @@ import com.example.exploringviews.R
 import com.example.exploringviews.databinding.FragmentCountriesBinding
 
 class CountryFragment : BaseFragment<FragmentCountriesBinding, BaseFragmentViewModel>() {
+    var country: String? = null
+
     interface OnCountryClickListener {
         fun onCountryClick(country: String)
     }
@@ -44,8 +46,23 @@ class CountryFragment : BaseFragment<FragmentCountriesBinding, BaseFragmentViewM
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (savedInstanceState != null) {
+            binding.fragmentContainerView.visibility =
+                if (savedInstanceState.getBoolean(
+                        "KEY_COUNTRY_VISIBILITY",
+                    )
+                ) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
+            country = savedInstanceState.getString("KEY_COUNTRY")
+        }
+
         initUi()
-        Log.d(TAG, "onViewCreated")
+
+        Log.d(TAG, "onViewCreated $savedInstanceState")
     }
 
     fun setCountryClickListener(listener: OnCountryClickListener) {
@@ -61,10 +78,10 @@ class CountryFragment : BaseFragment<FragmentCountriesBinding, BaseFragmentViewM
             )
         binding.listViewCountries.adapter = countryAdapter
         binding.listViewCountries.setOnItemClickListener { _, _, position, _ ->
-            val country = countryAdapter.getItem(position)
+            country = countryAdapter.getItem(position)
             country?.let {
                 Log.d(TAG, "Selected country: $country")
-                listener?.onCountryClick(country)
+                listener?.onCountryClick(it)
                 val fragmentManager = childFragmentManager
                 fragmentManager.beginTransaction().apply {
                     add(
@@ -80,6 +97,11 @@ class CountryFragment : BaseFragment<FragmentCountriesBinding, BaseFragmentViewM
                     binding.fragmentContainerView.visibility = View.VISIBLE
                     commit()
                 }
+            }
+        }
+        childFragmentManager.addOnBackStackChangedListener {
+            if (childFragmentManager.backStackEntryCount == 0) {
+                binding.fragmentContainerView.visibility = View.GONE
             }
         }
     }
@@ -138,6 +160,11 @@ class CountryFragment : BaseFragment<FragmentCountriesBinding, BaseFragmentViewM
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putBoolean(
+            "KEY_COUNTRY_VISIBILITY",
+            binding.fragmentContainerView.visibility == View.VISIBLE,
+        )
+        outState.putString("KEY_COUNTRY", country)
         Log.d(FragmentB2.TAG, "onSaveInstanceState")
     }
 }

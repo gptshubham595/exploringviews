@@ -48,6 +48,9 @@ class CountryDescFragment : BaseFragment<FragmentCountryDescBinding, BaseFragmen
                 "France" -> binding.tvCountryDesc.text = resources.getString(R.string.france_desc)
             }
         }
+        if (savedInstanceState != null) {
+            binding.tvCountryDesc.text = savedInstanceState.getString("key")
+        }
         Log.d(TAG, "onViewCreated")
     }
 
@@ -105,6 +108,7 @@ class CountryDescFragment : BaseFragment<FragmentCountryDescBinding, BaseFragmen
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putString("key", binding.tvCountryDesc.text.toString())
         Log.d(FragmentB2.TAG, "onSaveInstanceState")
     }
 }

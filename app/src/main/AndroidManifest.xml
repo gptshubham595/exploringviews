@@ -57,6 +57,7 @@
             android:name=".ActivityBWithFragment"
             android:exported="false"
             android:launchMode="singleTask" />
+<!--        android:configChanges="orientation|screenSize|keyboardHidden"-->
 
         <activity
             android:name=".ActivityC"

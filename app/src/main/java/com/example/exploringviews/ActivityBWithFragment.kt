@@ -45,6 +45,7 @@ class ActivityBWithFragment :
                     2 -> FragmentB3.newInstance()
                     3 -> {
                         CountryFragment.newInstance().apply {
+//                            retainInstance = true
                             setCountryClickListener(this@ActivityBWithFragment)
                         }
                     }
