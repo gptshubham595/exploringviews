@@ -47,7 +47,7 @@ class CountryFragment : BaseFragment<FragmentCountriesBinding, BaseFragmentViewM
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null && binding != null) {
             binding.fragmentContainerView.visibility =
                 if (savedInstanceState.getBoolean(
                         "KEY_COUNTRY_VISIBILITY",

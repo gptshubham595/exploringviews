@@ -43,4 +43,8 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : Fragment() {
 
     // Optional method to initialize the view model
     open fun ViewModel.init() {}
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
 }
