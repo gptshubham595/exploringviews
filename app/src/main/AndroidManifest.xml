@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/Theme.exploringviews"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ActivityA"
+            android:exported="true"
+            android:launchMode="standard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+        Stack that contains Activities = task
+        every activity starts with default launch mode = standard
+        which the activity pushed into = task affinity
+
+        Standard launch
+        If A activity is created it will go at top
+
+        singleTop
+        If A activity is called then if its already in top then no new created
+
+        singleTask -> will be single instance irrespective of task
+        it a instance is there then jump and restore already instance with onRestart and destroy others in line
+        If I am in Task3 and Activity A is in Task1 and If I open Activity B which is singleTask then it will open Task3 and destroy all from top until gets ActivityB
+
+        single Instance
+        when called with this activity will create new task separately for this and no other activity will be put inside this task
+        without task affinity you will see two task but unable to switch between them on tapping recents
+        with task affinity you will see two task and able to switch between them on tapping recents
+
+        single Instance Per Task
+        when called with this activity will create new task separately for this and allow other activity to be inside this task -->
+        <activity
+            android:name=".ActivityB"
+            android:exported="false"
+            android:launchMode="singleInstance" />
+        <!--            android:taskAffinity="com.example.new.affinityB"-->
+        <!--            android:launchMode="standard"-->
+
+        <activity
+            android:name=".ActivityBWithFragment"
+            android:exported="false"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".ActivityC"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.new.affinityC" />
+
+        <activity
+            android:name=".ActivityD"
+            android:exported="false"
+            android:launchMode="standard" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">exploringviews</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="countries_array">
+        <item>India</item>
+        <item>USA</item>
+        <item>UK</item>
+        <item>Canada</item>
+        <item>Germany</item>
+        <item>France</item>
+    </string-array>
+
+    <string name="india_desc">India is a country in South Asia. It is the seventh-largest country by area, the second-most populous country, and the most populous democracy in the world.</string>
+    <string name="usa_desc">The United States of America (USA), commonly known as the United States (U.S. or US), or America, is a country primarily located in North America.</string>
+    <string name="uk_desc">The United Kingdom of Great Britain and Northern Ireland, commonly known as the United Kingdom (UK) or Britain, is a sovereign country located off the north-western coast of the European mainland.</string>
+    <string name="canada_desc">Canada is a country in North America. Its ten provinces and three territories extend from the Atlantic to the Pacific and northward into the Arctic Ocean, covering 9.98 million square kilometres, making it the world\'s second-largest country by total area.</string>
+    <string name="germany_desc">Germany, officially the Federal Republic of Germany, is a country in Central Europe. It is the second-most populous country in Europe after Russia, and the most populous member state of the European Union.</string>
+    <string name="france_desc">France, officially the French Republic, is a country primarily located in Western Europe, consisting of metropolitan France and several overseas regions and territories.</string>
+
+</resources>
